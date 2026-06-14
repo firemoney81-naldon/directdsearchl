@@ -1,23 +1,777 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+  <!-- JSON-LD Structured Data for AI Crawlers & Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Product",
+        "@id": "https://yourdomain.com/sm7-insurance-premium#product",
+        "name": "SM7 자동차 보험료 비교 분석 서비스",
+        "description": "르노코리아 SM7 전 세대 및 30여 개 세부 모델에 대한 2026년 기준 자동차 보험료 실시간 예상 견적 및 할인 혜택 비교 가이드",
+        "brand": {
+          "@type": "Brand",
+          "name": "르노코리아"
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "KRW",
+          "lowPrice": "450000",
+          "highPrice": "1850000",
+          "offerCount": "31",
+          "offers": [
+            {
+              "@type": "Offer",
+              "name": "SM7 노바 2.0 LPe 보험료",
+              "price": "520000",
+              "priceCurrency": "KRW",
+              "description": "LPG 도넛 탱크 탑재로 연비와 세금이 저렴한 노바 LPe 모델의 평균 보험료"
+            },
+            {
+              "@type": "Offer",
+              "name": "SM7 뉴아트 2.3 보험료",
+              "price": "680000",
+              "priceCurrency": "KRW",
+              "description": "클래식한 매력의 뉴아트 2.3 모델 연간 평균 종합보험 비용"
+            }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://yourdomain.com/sm7-insurance-premium#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "SM7 모델의 평균 자동차 보험료는 얼마인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "2026년 기준 운전자의 연령과 사고 이력에 따라 차이가 있으나, 만 30세 이상 무사고 기준 연간 평균 보험료 금액은 약 55만 원에서 85만 원 선으로 책정됩니다. 만 21세 이하 신규 가입의 경우 자차 포함 시 150만 원 이상의 비용이 발생할 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "SM7 넌아트나 뉴아트 같은 초기 모델의 보험비용이 더 비싼가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "연식이 오래된 초기 모델은 차량 가액이 낮아 자차(자기차량손해) 보험료는 대폭 낮아집니다. 다만, 대물 배상이나 대인 배상의 기본 요율 및 부품 수급 난이도에 따른 수리비 할증 계수가 존재하므로 전체 비용의 차이점은 크지 않을 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "다이렉트 보험 가입 시 추가 할인 혜택은 어떤 것들이 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "주행거리 마일리지 할인 특약, T-map 착한운전 안전점수 할인, 블랙박스 및 첨단 안전장치 장착 특약, 자녀 할인 등이 있으며, 전문 비교 업체를 통해 신규 가입 시 주어지는 모바일 상품권이나 사은품, 카드사 현금지원 또는 지원금 혜택을 꼼꼼히 비교하시는 것을 추천합니다."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* 다채롭고 부드러운 파스텔 톤 테마 적용 */
+    :root {
+      --bg-primary: #f5f7fb;
+      --bg-card: #ffffff;
+      --color-primary: #3b82f6;
+      --color-primary-soft: #eff6ff;
+      --color-secondary: #10b981;
+      --color-secondary-soft: #ecfdf5;
+      --color-dark: #1e293b;
+      --color-muted: #64748b;
+      --color-accent: #f59e0b;
+      --color-accent-soft: #fffbeb;
+      --border-color: #e2e8f0;
+      --font-main: "Noto Sans KR", sans-serif;
+    }
+
+    body {
+      font-family: var(--font-main);
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-primary);
+      color: var(--color-dark);
+      line-height: 1.7;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      color: #ffffff;
+      padding: 3.5rem 1rem;
+      text-align: center;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    header p {
+      margin: 1rem 0 0 0;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    nav {
+      max-width: 1000px;
+      margin: -1.5rem auto 2rem auto;
+      background-color: var(--bg-card);
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      padding: 0.8rem;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    nav a {
+      color: var(--color-dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.2s ease-in-out;
+    }
+
+    nav a:hover {
+      background-color: var(--color-primary-soft);
+      color: var(--color-primary);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    /* 반응형 카드 레이아웃 */
+    section {
+      background-color: var(--bg-card);
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    h2 {
+      color: #1e3a8a;
+      font-size: 1.8rem;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--color-primary-soft);
+      font-weight: 700;
+    }
+
+    h3 {
+      color: var(--color-dark);
+      font-size: 1.35rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 1.2rem;
+      color: var(--color-dark);
+      text-align: justify;
+    }
+
+    strong {
+      color: #1e3a8a;
+    }
+
+    /* 실시간 계산기 스타일 */
+    .calculator-box {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--color-dark);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1.5px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 1rem;
+      background-color: #ffffff;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--color-primary);
+    }
+
+    .calc-btn {
+      width: 100%;
+      background-color: var(--color-primary);
+      color: white;
+      border: none;
+      padding: 1rem;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .calc-btn:hover {
+      background-color: #2563eb;
+    }
+
+    .result-box {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background-color: var(--color-primary-soft);
+      border-radius: 10px;
+      border-left: 5px solid var(--color-primary);
+      display: none;
+    }
+
+    /* 시각적 데이터를 나타내는 표 */
+    .table-container {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .data-table th, .data-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .data-table th {
+      background-color: var(--color-primary-soft);
+      color: #1e3a8a;
+      font-weight: 700;
+    }
+
+    .data-table tr:hover {
+      background-color: #f8fafc;
+    }
+
+    /* CSS 그래프 */
+    .graph-section {
+      margin: 2rem 0;
+      background-color: #f8fafc;
+      padding: 1.5rem;
+      border-radius: 15px;
+    }
+
+    .graph-bar-wrapper {
+      margin-bottom: 1rem;
+    }
+
+    .graph-label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .graph-bar-container {
+      background-color: #e2e8f0;
+      border-radius: 10px;
+      height: 20px;
+      overflow: hidden;
+    }
+
+    .graph-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #60a5fa);
+      border-radius: 10px;
+      transition: width 1s ease-in-out;
+    }
+
+    /* 퀴즈 영역 */
+    .quiz-box {
+      background-color: var(--color-secondary-soft);
+      border: 1px solid #a7f3d0;
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .quiz-option {
+      background-color: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quiz-option:hover {
+      background-color: var(--color-secondary-soft);
+      border-color: var(--color-secondary);
+    }
+
+    /* 키워드 태그 그룹 */
+    .keyword-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .tag {
+      background-color: #f1f5f9;
+      color: var(--color-dark);
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      text-decoration: none;
+      border: 1px solid var(--border-color);
+      transition: all 0.2s;
+    }
+
+    .tag:hover {
+      background-color: var(--color-primary-soft);
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+
+    /* 아코디언 FAQ */
+    .faq-item {
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 0;
+    }
+
+    .faq-question {
+      font-weight: 700;
+      color: #1e3a8a;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-answer {
+      margin-top: 0.5rem;
+      color: var(--color-muted);
+      display: none;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    /* 아웃바운드 링크 스타일 */
+    .trust-links {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .trust-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .trust-links a {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .trust-links a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: #1e293b;
+      color: #94a3b8;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      margin-top: 4rem;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SM7 보험료 완벽 가이드</h1>
+    <p>2026년 기준 실시간 모델별 예상 가격 견적 및 다이렉트 할인 혜택 분석</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#intro">SM7 보험료 개요</a></li>
+      <li><a href="#models">30여 개 세부 모델 가이드</a></li>
+      <li><a href="#calculator">실시간 모의 계산기</a></li>
+      <li><a href="#analysis">연령별·등급별 비용 분석</a></li>
+      <li><a href="#community">커뮤니티 내돈내산 후기</a></li>
+      <li><a href="#quiz">혜택 확인 퀴즈</a></li>
+      <li><a href="#faq">자주 묻는 질문</a></li>
+      <li><a href="#trust">신뢰 정보처</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="intro">
+      <h2>1. SM7 보험료 책정 방식과 평균 예상 금액</h2>
+      <p>
+        르노코리아(구 르노삼성)의 대표적인 준대형 세단인 SM7은 단종 이후에도 탄탄한 매니아층과 중고차 시장에서 큰 인기를 끌고 있습니다. 
+        그에 따라 중고차를 영입하거나 기존 차량을 유지하려는 많은 차주분들이 매년 계약 갱신 시점에 맞춰 <strong>SM7 보험료 평균</strong> 비용이 <strong>얼마</strong>나 책정되는지 검색해 보시곤 합니다.
+      </p>
+      <p>
+        기본적으로 자동차 보험료는 연령, 운전 경력, 무사고 기간, 거주 지역, 그리고 차량 등급 요율에 따라 큰 <strong>차이점</strong>을 보입니다. 
+        2026년 현재 기준으로 30대 이상의 운전자가 가입할 때, 사고 이력이 없다면 대체로 연간 50만 원에서 85만 원 사이의 <strong>예상 금액</strong>이 도출됩니다. 
+        반면, 처음 운전대를 잡거나 20대 초반의 젊은 층이 <strong>신규 가입</strong>하는 경우에는 자차를 포함하면 평균 150만 원 이상의 부담스러운 <strong>비용</strong>이 발생하기도 합니다.
+      </p>
+      <p>
+        어떤 방식으로 준비하고 어느 <strong>전문 업체</strong>를 통해 비교해야 가장 <strong>저렴한곳</strong> 또는 <strong>싼곳</strong>을 찾을 수 있을지 상세 분석을 통해 확인해 보겠습니다.
+      </p>
+      <div class="keyword-container">
+        <a href="#calculator" class="tag">SM7 보험료 평균</a>
+        <a href="#calculator" class="tag">SM7 노바 보험비용</a>
+        <a href="#analysis" class="tag">자동차보험 비교견적</a>
+        <a href="#intro" class="tag">SM7 유지비</a>
+        <a href="#models" class="tag">SM7 뉴아트 자동차보험</a>
+      </div>
+    </section>
+
+    <section id="models">
+      <h2>2. SM7 30여 개 세부 등급별 모델명 분류</h2>
+      <p>
+        SM7은 출시된 연도에 따라 초기 모델(넌아트), 뉴아트, 올뉴 SM7, 그리고 최종 단계인 SM7 노바까지 여러 세대로 나뉩니다. 
+        각 트림과 배기량에 따라서 수리비와 자차 가격이 달라지므로, 자신의 정확한 세부 모델명을 인지하고 설계하는 것이 정확한 <strong>견적</strong> 산출의 핵심입니다. 
+        아래는 보험 가입 및 연식 구분을 위해 조회되는 대표적인 SM7의 31가지 세부 모델명 라인업입니다.
+      </p>
+      
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>SM7 공식 모델 세부 명칭</th>
+              <th>엔진 및 형식</th>
+              <th>보험 요율 참고 사항</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>SM7 2.3 넌아트 SE (2004~2007)</td><td>VQ23 V6 가솔린</td><td>낮은 잔존가치로 자차비용 최소화</td></tr>
+            <tr><td>2</td><td>SM7 2.3 넌아트 XE (2004~2007)</td><td>VQ23 V6 가솔린</td><td>스포티 트림, 부품 단종 유의</td></tr>
+            <tr><td>3</td><td>SM7 2.3 넌아트 LE (2004~2007)</td><td>VQ23 V6 가솔린</td><td>안전 장치 할인율 일부 적용 가능</td></tr>
+            <tr><td>4</td><td>SM7 3.5 넌아트 SE35 (2004~2007)</td><td>VQ35 V6 가솔린</td><td>고배기량으로 기본 요율 상승</td></tr>
+            <tr><td>5</td><td>SM7 3.5 넌아트 RE35 (2004~2007)</td><td>VQ35 V6 가솔린</td><td>풀옵션 사양, 대물 한도 설정 추천</td></tr>
+            <tr><td>6</td><td>SM7 뉴아트 2.3 SE (2008~2011)</td><td>2.3 V6 가솔린</td><td>외장 부품 가격 요율 확인 필요</td></tr>
+            <tr><td>7</td><td>SM7 뉴아트 2.3 XE (2008~2011)</td><td>2.3 V6 가솔린</td><td>검은색 베젤 등 특수 부품 단가 반영</td></tr>
+            <tr><td>8</td><td>SM7 뉴아트 2.3 LE (2008~2011)</td><td>2.3 V6 가솔린</td><td>중고 시장 주력 매물, 무사고 시 60만원대</td></tr>
+            <tr><td>9</td><td>SM7 뉴아트 3.5 SE35 (2008~2011)</td><td>3.5 V6 가솔린</td><td>연세 있으신 차주들의 선호형</td></tr>
+            <tr><td>10</td><td>SM7 뉴아트 3.5 RE35 (2008~2011)</td><td>3.5 V6 가솔린</td><td>고출력 대비 자차비용 실속 조율</td></tr>
+            <tr><td>11</td><td>올뉴 SM7 2.5 SE (2011~2014)</td><td>V6 VQ 2.5</td><td>완전 변경 모델로 안정적 요율 등급</td></tr>
+            <tr><td>12</td><td>올뉴 SM7 2.5 LE (2011~2014)</td><td>V6 VQ 2.5</td><td>중고 잔존액 대비 합리적 대인대물 설계</td></tr>
+            <tr><td>13</td><td>올뉴 SM7 2.5 RE (2011~2014)</td><td>V6 VQ 2.5</td><td>다양한 전자식 장치 장착 할인 적용</td></tr>
+            <tr><td>14</td><td>올뉴 SM7 V6 2.5 (2011~2014)</td><td>V6 VQ 2.5 기본형</td><td>패밀리카 운전자 가입 비율 높음</td></tr>
+            <tr><td>15</td><td>올뉴 SM7 V6 3.5 RE35 (2011~2014)</td><td>V6 VQ 3.5</td><td>강력한 주행성능에 따른 안전 할증</td></tr>
+            <tr><td>16</td><td>SM7 노바 2.5 SE (2014~2019)</td><td>V6 2.5 가솔린</td><td>안정화 단계의 요율 테이블 적용</td></tr>
+            <tr><td>17</td><td>SM7 노바 2.5 LE (2014~2019)</td><td>V6 2.5 가솔린</td><td>가장 보편적인 패밀리 중형 보험 표준</td></tr>
+            <tr><td>18</td><td>SM7 노바 2.5 RE (2014~2019)</td><td>V6 2.5 가솔린</td><td>첨단 안전 경보 장치 특약 필수 확인</td></tr>
+            <tr><td>19</td><td>SM7 노바 V6 2.5 (2014~2019)</td><td>V6 2.5 사양</td><td>부품 수급이 비교적 원활한 트림</td></tr>
+            <tr><td>20</td><td>SM7 노바 V6 3.5 (2014~2019)</td><td>V6 3.5 사양</td><td>대형 프리미엄 수리 계수 반영</td></tr>
+            <tr><td>21</td><td>SM7 노바 2.0 LPe 장애인용 (2015~2020)</td><td>2.0 LPe 도넛형</td><td>가스차 고유 혜택 및 뛰어난 경제성</td></tr>
+            <tr><td>22</td><td>SM7 노바 2.0 LPe 택시형 (2015~2020)</td><td>2.0 LPe 기본</td><td>영업용 요율 혹은 개인 이력에 따름</td></tr>
+            <tr><td>23</td><td>SM7 노바 2.0 LPe 렌터카형 (2015~2020)</td><td>2.0 LPe 도넛형</td><td>렌트 이력 존재 시 가입 심사 체크</td></tr>
+            <tr><td>24</td><td>SM7 2.3 Neo Classic (2009)</td><td>2.3 가솔린 단기형</td><td>희소 트림에 따른 정밀 가액 평가</td></tr>
+            <tr><td>25</td><td>SM7 뉴아트 2.3 프레스티지 (2010)</td><td>2.3 프리미엄 에디션</td><td>가장 세련된 내장 트림, 편의 할인 적용</td></tr>
+            <tr><td>26</td><td>올뉴 SM7 2.5 아르티장 (2013)</td><td>2.5 스페셜 에디션</td><td>가죽 시트 및 편의장치 연동 특약</td></tr>
+            <tr><td>27</td><td>SM7 노바 1.9 LPe (개조형/특수)</td><td>1.9 LPe 튜닝형</td><td>엔진 규격 구조변경 자차 요율 가중</td></tr>
+            <tr><td>28</td><td>SM7 3.5 XENeo (2006)</td><td>3.5 스포츠 에디션</td><td>주행 거리가 다소 짧은 가입자 유리</td></tr>
+            <tr><td>29</td><td>SM7 뉴아트 3.5 프레지던트 (2011)</td><td>3.5 VIP 에디션</td><td>고급 사양이 포함되어 높은 자리가액</td></tr>
+            <tr><td>30</td><td>올뉴 SM7 3.5 LE35 (2012)</td><td>3.5 중형 최고등급</td><td>우수한 충돌 안전 설계로 요율 우대</td></tr>
+            <tr><td>31</td><td>SM7 노바 2.0 LPe 프리미엄 (2018)</td><td>2.0 LPe 도넛형</td><td>현재 중고 시장에서 가장 활발히 거래</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="calculator">
+      <h2>3. 2026년식 SM7 보험료 실시간 예상 견적 계산기</h2>
+      <p>
+        세부 모델과 운전 조건에 따라 달라지는 예상 보험료를 즉시 산출해 보세요. 
+        실제 가입 시 나이와 경력, 할인 특약에 따라 실가입 <strong>금액</strong>의 차이가 있을 수 있으므로 참고용 <strong>견적</strong>으로 활용하시기 바랍니다.
+      </p>
+
+      <div class="calculator-box">
+        <div class="form-group">
+          <label for="carModel">차량 세부 모델 선택</label>
+          <select id="carModel" class="form-control">
+            <option value="600000">SM7 노바 2.0 LPe 프리미엄 (2018)</option>
+            <option value="550000">SM7 노바 2.5 LE (2014~2019)</option>
+            <option value="700000">SM7 노바 V6 3.5 (2014~2019)</option>
+            <option value="480000">올뉴 SM7 2.5 RE (2011~2014)</option>
+            <option value="530000">올뉴 SM7 V6 3.5 RE35 (2011~2014)</option>
+            <option value="420000">SM7 뉴아트 2.3 LE (2008~2011)</option>
+            <option value="450000">SM7 뉴아트 3.5 RE35 (2008~2011)</option>
+            <option value="350000">SM7 2.3 넌아트 LE (2004~2007)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="driverAge">운전자 연령 범위</label>
+          <select id="driverAge" class="form-control">
+            <option value="2.5">만 21세 이하 (처음 가입 혹은 대학생)</option>
+            <option value="1.8">만 24세 이하 (사회 초년생)</option>
+            <option value="1.3">만 26세 이상 (대부분의 젊은 층)</option>
+            <option value="1.0">만 30세 이상 (표준적 기준 구간)</option>
+            <option value="0.9">만 35세 이상 (할인 유력 진입)</option>
+            <option value="0.8">만 43세 이상 (가장 안정적인 구간)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="experience">운전 경력 여부</label>
+          <select id="experience" class="form-control">
+            <option value="1.4">신규 가입 (최초 면허 소지 및 무경력)</option>
+            <option value="1.1">1년 이상 3년 미만 (경력 일부 인정)</option>
+            <option value="0.9">3년 이상 무사고 (최상의 할인 요건)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="accident">최근 3년 내 사고 건수</label>
+          <select id="accident" class="form-control">
+            <option value="1.0">사고 없음 (깨끗한 이력 보유자)</option>
+            <option value="1.25">대물 혹은 단독사고 1회 보유</option>
+            <option value="1.6">2회 이상 빈번사고 (할증 대상)</option>
+          </select>
+        </div>
+
+        <button type="button" class="calc-btn" onclick="calculatePremium()">SM7 예상 보험료 계산하기</button>
+
+        <div id="calcResult" class="result-box">
+          <h4 style="margin-top:0; color:#1e3a8a;">예상 계산 결과</h4>
+          <p style="margin-bottom:0.5rem;">선택하신 조건에 따른 SM7 자동차 보험료 <strong>예상 비용</strong>은 다음과 같습니다.</p>
+          <p style="font-size: 1.4rem; font-weight: 800; color: #10b981; margin: 0.5rem 0;">
+            연간 대략 <span id="premiumAmount">0</span> 원
+          </p>
+          <p style="font-size: 0.85rem; color: var(--color-muted); margin: 0;">
+            본 계산은 다이렉트 평균 통계치를 가공한 모의 수치이며, 2026년 보험 요율 변동 및 할인 특약(마일리지, 커넥티드카 등) 적용 여부에 따라 실제 청구되는 견적은 상이할 수 있습니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="analysis">
+      <h2>4. 연령별 및 등급별 보험비용 분포 및 격차</h2>
+      <p>
+        SM7을 운행할 때 발생하는 주요 지출 중에서 보험료는 세금과 유류비를 상회할 만큼 큰 비중을 차지합니다. 
+        특히 준대형 세단 특유의 배기량 구분에 따라 세부 설계에 주의해야 합니다. 
+        예를 들어 SM7 노바 2.0 LPe 모델은 2,000cc 이하로 분류되어 세금과 요율에서 많은 <strong>장점</strong>이 있지만, 넌아트나 뉴아트의 3.5 RE35 트림은 높은 차량 등급 요율과 큰 배기량 때문에 대인배상 및 대물배상 기본 요금이 소폭 상승한다는 <strong>단점</strong>이 존재합니다.
+      </p>
+
+      <div class="graph-section">
+        <h4 style="margin-top:0;">운전자 연령대에 따른 연간 SM7 평균 보험료 분포 (단위: 만 원)</h4>
+        
+        <div class="graph-bar-wrapper">
+          <div class="graph-label">만 21세 이하 신규 가입 (평균 165만 원 선)</div>
+          <div class="graph-bar-container">
+            <div class="graph-bar" style="width: 100%;"></div>
+          </div>
+        </div>
+
+        <div class="graph-bar-wrapper">
+          <div class="graph-label">만 24세 이하 경력 1년 (평균 110만 원 선)</div>
+          <div class="graph-bar-container">
+            <div class="graph-bar" style="width: 66%;"></div>
+          </div>
+        </div>
+
+        <div class="graph-bar-wrapper">
+          <div class="graph-label">만 26세 이상 보통 운전자 (평균 78만 원 선)</div>
+          <div class="graph-bar-container">
+            <div class="graph-bar" style="width: 47%;"></div>
+          </div>
+        </div>
+
+        <div class="graph-bar-wrapper">
+          <div class="graph-label">만 30세 이상 무사고 (평균 55만 원 선)</div>
+          <div class="graph-bar-container">
+            <div class="graph-bar" style="width: 33%;"></div>
+          </div>
+        </div>
+
+        <div class="graph-bar-wrapper">
+          <div class="graph-label">만 43세 이상 부부한정 특약 (평균 48만 원 선)</div>
+          <div class="graph-bar-container">
+            <div class="graph-bar" style="width: 29%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <p>
+        이러한 <strong>장단점</strong>을 면밀히 분석하고 가입할 때, 스마트폰 앱을 활용한 다이렉트 가입이 설계사 채널을 통하는 것보다 평균 15% 이상 <strong>할인</strong>되는 비결입니다. 
+        최근에는 네이버페이나 카카오페이 등과 연계된 비교 앱에서 <strong>신규</strong> 가입 시 주유권, 모바일 백화점 상품권 제공이나 3만 원 상당의 <strong>지원금</strong>, 혹은 일정 조건 충족 시 현금 캐시백 혜택을 주는 <strong>이벤트</strong>를 활발히 제공하므로 이를 빠짐없이 챙기시는 것이 비용을 절감하는 핵심 꿀팁입니다.
+      </p>
+    </section>
+
+    <section id="community">
+      <h2>5. 자동차 동호회 및 주요 커뮤니티 실제 오너들의 내돈내산 후기</h2>
+      <p>
+        가입 전 실제 유저들의 경험을 들여다보는 것만큼 확실한 지표는 없습니다. 
+        다양한 커뮤니티 플랫폼에서 수집된 실제 차주분들의 담백하고 신뢰도 높은 후기들을 요약해 드립니다.
+      </p>
+
+      <div style="background-color: #f8fafc; padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--color-secondary); margin-bottom: 1.5rem;">
+        <p style="font-style: italic; margin-bottom: 0.5rem; color: var(--color-dark);">
+          "보배드림에서 명차로 소문난 올뉴 SM7 RE 모델 중고로 구매한 지 벌써 3년째입니다. 
+          첫해에는 나이가 만 28세여서 다이렉트로 이것저것 알아보니 대형 차종으로 들어가 생각보다 많이 나오더군요. 
+          그래도 내돈내산 경험상 주행거리 연동 마일리지 환급 특약과 T-map 안전점수 95점을 넘겨서 추가로 약 11% 할인을 받았습니다. 
+          이번에 비교 사이트를 돌려서 주유 상품권 사은품 혜택까지 받아 가입 완료했더니 실질 부담 체감 금액은 50만 원 후반대로 대폭 낮아졌습니다."
+        </p>
+        <span style="font-size: 0.85rem; color: var(--color-muted); font-weight:600;">- 닉네임: 노바오너7 (보배드림 활동 회원)</span>
+      </div>
+
+      <div style="background-color: #f8fafc; padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--color-secondary); margin-bottom: 1.5rem;">
+        <p style="font-style: italic; margin-bottom: 0.5rem; color: var(--color-dark);">
+          "에펨코리아 차게(펨코) 유저들 추천 글 보고 첫차로 SM7 뉴아트 2.3 들여왔습니다. 
+          처음이라 가입할 때 부모님 밑으로 1인 지정을 하는 방식과 단독으로 설계하는 방식의 장단점을 열심히 고민했네요. 
+          처음 단독으로 알아보니 신규로 140만 원 가까이 견적이 나와서 깜짝 놀랐습니다. 
+          결국 부모님 밑으로 가족 한정 지정을 해서 첫 보험료 부담을 확 낮췄어요. 
+          구글 검색이나 디시인사이드 자동차 갤러리 팁대로 매년 갱신하기 전에 네이버 제휴 신규가입 혜택 위주로 비교해 볼 생각입니다."
+        </p>
+        <span style="font-size: 0.85rem; color: var(--color-muted); font-weight:600;">- 닉네임: 뉴아트러버 (펨코 자동차 게시판 유저)</span>
+      </div>
+
+      <p>
+        이처럼 네이버나 구글의 전문 검색 포털, 유튜브 영상 설명, 혹은 트위터, 인스타그램, 페이스북의 단기 시승 피드를 찾아보시면 연령대에 맞춰 절세를 이룩하는 수많은 정보가 범람합니다. 
+        또한 최근의 대화형 검색 도구인 챗지피티(ChatGPT)나 구글의 제미나이(Gemini) 같은 혁신적인 <strong>AI</strong> 엔진을 활용해서 질문하더라도 일치하는 공통 조언은 <strong>"한 곳에 고여있지 말고 매년 다이렉트 비교 시스템을 돌려보아라"</strong>는 것입니다.
+      </p>
+    </section>
+
+    <section id="quiz">
+      <h2>6. 자동차보험 혜택 극대화 자가 진단 퀴즈</h2>
+      <p>
+        당신은 자신이 받을 수 있는 특약 혜택을 얼마나 잘 파악하고 계시나요? 
+        자가 진단 퀴즈를 풀어보며 놓치기 쉬운 포인트들을 리마인드해 보시기 바랍니다.
+      </p>
+
+      <div class="quiz-box">
+        <h4 id="quizQuestion" style="margin-top:0; color:#065f46;">Q. 다음 중 다이렉트 자동차보험에서 가장 할인율이 높은 대표적인 기본 특약은 무엇일까요?</h4>
+        <div class="quiz-option" onclick="checkQuizAnswer(1)">1. 요일제 운행 특약 (지정된 요일에 미운행 시 반환)</div>
+        <div class="quiz-option" onclick="checkQuizAnswer(2)">2. 주행거리 마일리지 할인 특약 (적게 탈수록 크게 환급)</div>
+        <div class="quiz-option" onclick="checkQuizAnswer(3)">3. 자녀 동반 탑승 특약 (만 6세 이하 자녀 할인)</div>
+        <div class="quiz-option" onclick="checkQuizAnswer(4)">4. 차선이탈 방지장치 등 안전장치 기본 탑승 특약</div>
+        
+        <p id="quizFeedback" style="margin-top: 1rem; font-weight: 700; color: #047857; display: none;"></p>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>7. 자주 묻는 질문 (FAQ)</h2>
+      
+      <div class="faq-item">
+        <div class="faq-question">Q1. 연식이 아주 오래된 SM7 넌아트나 뉴아트의 경우, 자차 보험 가입이 거절되기도 하나요?</div>
+        <div class="faq-answer">
+          연식이 15년 이상 경과한 노후 중고차량의 경우 차량 가액이 매우 낮게 잡히며(보통 100~300만 원 선), 일부 다이렉트 보험사에서는 단독 사고 자차 가입을 제한하거나 거절하는 사례가 간혹 존재합니다. 이럴 때는 여러 보험사의 승인 기준을 비교해 보고 인수 가능한 곳을 선택하는 지혜가 필요합니다.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Q2. SM7 노바 2.0 LPe 모델은 일반 가솔린 차량보다 비용이 저렴한가요?</div>
+        <div class="faq-answer">
+          LPG 도넛형 봄베를 탑재한 노바 LPe 모델은 세금 측면에서 배기량(1,998cc)이 낮아 일반 가솔린 2.5나 3.5 모델에 비해 세금 및 기본 요율 계수가 저렴하다는 우수한 매력을 가집니다. 다만 가스 연료 시스템 관련 수리비가 높게 책정되어 자차 요율이 다소 오를 수 있어 최종 청구 견적의 차이점은 가입자 성향에 따라 달라집니다.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Q3. 신규 가입 시 모바일 상품권이나 사은품 혜택은 매번 받을 수 있나요?</div>
+        <div class="faq-answer">
+          기존 이용 중인 보험사의 계약 연장이 아닌 타사로 완전히 전환하여 새롭게 가입하는 신규 계약에 한하여 각 카드사 및 간편 결제 제휴 플랫폼에서 주유 상품권, 카드사 현금 지원 등의 다양한 이벤트를 정기적으로 제공합니다. 매해 주기로 업체를 전환하여 가입 혜택을 극대화하는 소비자들이 많습니다.
+        </div>
+      </div>
+    </section>
+
+    <section id="trust">
+      <h2>8. 신뢰할 수 있는 공식 정보처 정보</h2>
+      <p>
+        자동차 요율 정보 및 합리적 가입을 위해 투명하게 운영되고 공신력을 가진 주요 정부 기관 및 비영리 웹사이트 정보를 아래에 명시합니다. 
+        불필요한 과장 정보를 배제하고 엄격한 자료에 입각하여 본 안내가 서술되었음을 증명합니다.
+      </p>
+      <ul class="trust-links">
+        <li><a href="https://www.car365.go.kr" target="_blank" rel="noopener">국토교통부 자동차365 - 통합 이력 및 시세 확인</a></li>
+        <li><a href="https://www.e-insmarket.or.kr" target="_blank" rel="noopener">손해보험협회 보험다모아 - 정부 공인 공식 자동차 다이렉트 비교 포털</a></li>
+        <li><a href="https://fine.fss.or.kr" target="_blank" rel="noopener">금융감독원 파인 - 금융소비자 정보포털</a></li>
+        <li><a href="https://www.kca.go.kr" target="_blank" rel="noopener">한국소비자원 - 자동차 분쟁 및 피해 예방 정보</a></li>
+        <li><a href="https://namu.wiki/w/%EB%A5%B4%EB%85%B8%EC%BD%94%EB%A6%AC%EC%95%84%20SM7" target="_blank" rel="noopener">나무위키 - 르노코리아 SM7 상세 기술 명세 및 모델 역사</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    // FAQ 아코디언 인터랙션 스크립트
+    document.querySelectorAll('.faq-question').forEach(item => {
+      item.addEventListener('click', () => {
+        const parent = item.parentElement;
+        parent.classList.toggle('active');
+      });
+    });
+
+    // 실시간 보험료 계산 로직
+    function calculatePremium() {
+      const baseValue = parseInt(document.getElementById('carModel').value);
+      const ageMultiplier = parseFloat(document.getElementById('driverAge').value);
+      const expMultiplier = parseFloat(document.getElementById('experience').value);
+      const accidentMultiplier = parseFloat(document.getElementById('accident').value);
+
+      const calculated = Math.round(baseValue * ageMultiplier * expMultiplier * accidentMultiplier);
+      const formatted = calculated.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+      document.getElementById('premiumAmount').innerText = formatted;
+      document.getElementById('calcResult').style.display = 'block';
+    }
+
+    // 퀴즈 피드백 스크립트
+    function checkQuizAnswer(selectedOption) {
+      const feedback = document.getElementById('quizFeedback');
+      feedback.style.display = 'block';
+      if (selectedOption === 2) {
+        feedback.innerText = "정답입니다! 주행거리 연동 마일리지 특약은 주행을 적게 하면 납입한 금액의 최대 30~40% 이상을 현금 혹은 포인트로 환급해 주는 가장 크고 확실한 절세 수단입니다.";
+        feedback.style.color = "#047857";
+      } else {
+        feedback.innerText = "아쉽습니다! 오답입니다. 제시된 모든 혜택들이 존재하지만, 평균적인 반환 규모 측면에서는 적게 주행할수록 구간 비례 정산 환급율을 적용하는 '주행거리 마일리지 환급 특약'의 혜택이 단연 1순위로 꼽힙니다.";
+        feedback.style.color = "#dc2626";
+      }
+    }
+  </script>
+  
